@@ -1,0 +1,148 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+<style>
+    body{
+        background: #fff;
+    }
+</style>
+
+
+
+        <!-- Voici notre en‑tête -->
+        <header>
+            <div class="entete ">
+                <div id="logobooki">
+                    <img src="image/logo.jpg" alt="logo Booki" id="logobooki"/>
+                </div>
+
+                <div id="section_header">
+                    <a class="active menu" href="Hébergements">Voitures</a>
+                    <a class="menu" href="Activités">Locations</a>
+                    {% if not app.user %}
+                    <a class="menu" href="{{ path('app_login') }}">Connexion</a>
+                    {% else %}
+                    <a class="menu" href="{{ path('app_logout') }}">Deconnexion</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="container-site home">
+                <div class="home-title">
+                    <h2>Trouver votre voiture pour vos déplacements</h2>
+                    <br>
+                    <br>
+                    <p>A des prix incombattables</p>
+                </div>
+
+
+                <!-- Un formulaire de recherche -->
+
+                <form>
+                    <div class="search">
+                        <div class="content icone">
+                            <i class="uil uil-map-marker"></i>
+                        </div>
+                        <div class="content">
+                            <input type="search" name="q" placeholder="Rechercher une voiture">
+                        </div>
+                        <div class="content">
+                            <button type="submit">Rechercher</button>
+                        </div>
+
+                    </div>
+                </form>
+
+                
+                
+            </div>
+
+        </header>
+        <!-- Ici nous mettons le contenu de la page -->
+        <main>
+            <div class="container-site">
+                <div class="info">
+                    <div class="info-circle">
+                        <i class="uil uil-info"></i>
+                    </div>
+                    
+                    <span>Plus de 500 voitures pour vous</span>
+                </div>
+            </div>
+            <div class="container-site main-center">
+
+                
+                <!-- Il contient un article -->
+                <article class="list-article">
+                    <h3>Nos voitures</h3>
+                    <div class="list">
+                    {% for item in voitures %}
+                        
+                    <a href="{{ path('app_loca_detail', {'id': item.id}) }}">
+                        <div class="card card-center">
+                            <img src="{{ item.photo }}" alt="" srcset="">
+                            <div class="card-text">
+                                <h3>{{ item.marque }}</h3>
+                                <span>A partir de <strong>{{ item.prix }} CFA/Jour</strong></span>
+                                <div class="star">
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-light' ></i>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        </a>
+                    {% endfor %}
+                    
+                        
+                    </div>
+                    <a href="#"><h3>Afficher plus</h3></a>
+                    
+                </article>
+
+                <!-- Contenu aside -->
+                <aside class="main-aside">
+                    <div class="aside-title">
+                        <h3>Les plus populaires</h3>
+                        <i class='bx bxs-star ' ></i>
+                    </div>
+                    <div class="list-card-aside">
+                    {% for top in tops %}
+                        <div class="card card-aside">
+                            <img src="{{ top.photo }}" alt="" srcset="">
+                            <div class="card-aside-text">
+                                <h3>{{ top.marque }}</h3>
+                                <span>A <strong>{{ top.prix }} CFA/Jour</strong></span>
+                                <div class="star">
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-light' ></i>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                        
+                        
+                    </div>
+                </aside>
+            </div>
+
+            
+        </main>
+
+        <!-- Et voici notre pied de page-->
+        <footer>
+        <br>
+        <br>
+        <br>
+            <p>&copy; 2022 ESTM EXAMEN</p>
+        </footer>
+
+{% endblock %}

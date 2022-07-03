@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}User index{% endblock %}
+
+{% block body %}
+
+<div class="container">
+        <!------Début Aside------>
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>E-TICKET</h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <i class="uil uil-times"></i>
+                </div>
+            </div>
+
+            <div class="sidebar" id="mySide">
+                <a href="./"  class="alink">
+                    <i class="uil uil-apps"></i>
+                    <h3>Dashbord</h3>
+                </a>
+                <a  href="{{ path('app_user_index')}}" class="alink active">
+                    <i class="uil uil-users-alt"></i>
+                    <h3>Utilisateurs</h3>
+                </a>
+                <a  href="{{ path('app_voiture_index')}}" id="evnt"  class="alink ">
+                    <i class="uil uil-car-sideview"></i>
+                    <h3>Voitures</h3>
+                </a>
+                <a href="#"  class="alink">
+                    <i class="uil uil-postcard"></i>
+                    <h3>Demandes</h3>
+                </a>
+                <a href="#" class="alink">
+                    <i class="uil uil-car-wash"></i>
+                    <h3>Locations</h3>
+                </a>
+                <a href="{{ path('app_logout') }}">
+                    <i class="uil uil-signout"></i>
+                    <h3>Déconnexion</h3>
+                </a>
+            </div>
+        </aside>
+        <!------Fin Aside------>
+
+        <main>
+            <section class="sect" id="event">
+<h1>Back office</h1>
+
+
+
+
+<div class="recent-orders" id="corp">
+
+    <div class="myHeads">
+        <h2>Liste des utilisateurs</h2>
+    </div>
+    <div class="item add-user" id="addEv" >
+        <div>
+            
+             <a href="{{ path('app_user_new') }}">
+                <i class="uil uil-plus"></i>
+                Nouveau utilisateur
+             </a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>Email</th>
+                <th>Prenom</th>
+                <th>Nom</th>
+                <th>Telephone</th>
+                
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>
+                    <img class="photo-profil" src="{{ user.photo }}" width="50px" height="50px" style="border-radius:50%">
+                </td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.nom }}</td>
+                <td>{{ user.telephone }}</td>
+                <td>
+                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Aucun untilisateur</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+</section>
+        </main>
+
+        <!------Fin MAIN------>
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <i class="uil uil-bars"></i>
+                </button>
+                <div class="theme-toggler">
+                    <i class="uil uil-sun active"></i>
+                    <i class="uil uil-moon"></i>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Bonjour, <b><?= $_SESSION['aprenom'] ?></b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profil-photo">
+                        <img src="../assets/images/profil/mianne.png" alt="" srcset="">
+                    </div>
+                </div>
+            </div>
+            <!------Fin TOP------>
+
+            
+    </div>
+
+    
+
+   
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+<style>
+    body{
+        background: #fff;
+    }
+</style>
+
+
+
+        <!-- Voici notre en‑tête -->
+        <header>
+            <div class="entete ">
+                <div id="logobooki">
+                    <img src="/image/logo.jpg" alt="logo Booki" id="logobooki"/>
+                </div>
+
+                <div id="section_header">
+                    <a class="active menu" href="Hébergements">Voitures</a>
+                    <a class="menu" href="Activités">Locations</a>
+                    <a class="menu" href="Activités">Connexion</a>
+                    <a class="menu" href="Activités">Deconnexion</a>
+                </div>
+            </div>
+
+            <div class="container-site home">
+                <div class="home-title">
+                    <h2>Trouver votre voiture pour vos déplacements</h2>
+                    <br>
+                    <br>
+                    <p>A des prix incombattables</p>
+                </div>
+
+
+                <!-- Un formulaire de recherche -->
+
+                
+
+                
+                
+            </div>
+
+        </header>
+        <main>
+            <div class="container-site">
+                <div class="info">
+                    <div class="info-circle">
+                        <i class="uil uil-info"></i>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            <div class="container-site main-center">
+
+                
+                <!-- Il contient un article -->
+                <article class="list-article">
+                    <div class="list">
+                    
+                        
+                    <a href="#">
+                        <div class="card card-center">
+                            <img src="{{ voiture.photo }}" alt="" srcset="">
+                            <div class="card-text">
+                                <h3>{{ voiture.marque }}</h3>
+                                <span>A partir de <strong>{{ voiture.prix }} CFA/Jour</strong></span>
+                                <div class="star">
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-light' ></i>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        </a>
+                    
+                        
+                    </div>
+                    
+                </article>
+
+                <!-- Contenu aside -->
+                <aside class="main-aside">
+                    <div class="aside-title">
+                        <h3>Les plus populaires</h3>
+                        <i class='bx bxs-star ' ></i>
+                    </div>
+                    <div class="list-card-aside">
+                    {% for top in tops %}
+                        <div class="card card-aside">
+                            <img src="{{ top.photo }}" alt="" srcset="">
+                            <div class="card-aside-text">
+                                <h3>{{ top.marque }}</h3>
+                                <span>A <strong>{{ top.prix }} CFA/Jour</strong></span>
+                                <div class="star">
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-light' ></i>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                        
+                        
+                    </div>
+                </aside>
+            </div>
+
+            
+        </main>
+
+        <!-- Et voici notre pied de page-->
+        <footer>
+        <br>
+        <br>
+        <br>
+            <p>&copy; 2022 ESTM EXAMEN</p>
+        </footer>
+
+{% endblock %}

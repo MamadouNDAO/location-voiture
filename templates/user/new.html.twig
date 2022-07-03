@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New User{% endblock %}
+
+{% block body %}
+<div class="container">
+        <!------Début Aside------>
+        <aside>
+            <div class="top">
+                <div class="logo">
+                    <h2>SEN-VOITURE</h2>
+                </div>
+                <div class="close" id="close-btn">
+                    <i class="uil uil-times"></i>
+                </div>
+            </div>
+
+            <div class="sidebar" id="mySide">
+                <a href="./"  class="alink">
+                    <i class="uil uil-apps"></i>
+                    <h3>Dashbord</h3>
+                </a>
+                <a  href="{{ path('app_user_index')}}" class="alink active">
+                    <i class="uil uil-users-alt"></i>
+                    <h3>Utilisateurs</h3>
+                </a>
+                <a  href="{{ path('app_voiture_index')}}" id="evnt"  class="alink ">
+                    <i class="uil uil-car-sideview"></i>
+                    <h3>Voitures</h3>
+                </a>
+                <a href="./?p=ticket"  class="alink">
+                    <i class="uil uil-postcard"></i>
+                    <h3>Demandes</h3>
+                </a>
+                <a href="#" class="alink">
+                    <i class="uil uil-car-wash"></i>
+                    <h3>Locations</h3>
+                </a>
+                <a href="../index.php?page=exit">
+                    <i class="uil uil-signout"></i>
+                    <h3>Déconnexion</h3>
+                </a>
+            </div>
+        </aside>
+        <!------Fin Aside------>
+
+        <main>
+            <section class="sect" id="event">
+<h1>Back office</h1>
+
+
+
+
+<div class="recent-orders" id="corp">
+
+    <div class="myHeads">
+        <h2>Ajout utilisateur</h2>
+    </div>
+    <div class="item add-user" id="addEv" >
+        <div>
+            
+             <a href="{{ path('app_user_new') }}">
+                <i class="uil uil-plus"></i>
+                Nouveau utilisateur
+             </a>
+        </div>
+    </div>
+    
+    <div class="form-ajoute">
+    <h1>Ajout utilisateur</h1>
+    <br>
+        <form action="{{ path('app_user_new') }}" method="post" enctype="multipart/form-data">
+            <div class="form-input">
+                <label>Prénom</label>
+                <input type="text" name="prenom" placeholder="Prénom..." required>
+            </div>
+
+            <div class="form-input">
+                <label>Nom</label>
+                <input type="text" name="nom" placeholder="Nom..." required>
+            </div>
+
+            <div class="form-input">
+                <label>Email</label>
+                <input type="text" name="email" placeholder="Email..." required>
+            </div>
+
+            <div class="form-input">
+                <label>Téléphone</label>
+                <input type="text" name="phone" placeholder="Téléphone..." required>
+            </div>
+
+            <div class="form-input">
+                <label>Mot de passe</label>
+                <input type="password" name="password" placeholder="Mot de passe..." required>
+            </div>
+            <div class="form-input">
+                <label>Photo</label>
+                <input type="file" name="photo" placeholder="photo...">
+            </div>
+
+            <button type="submit" class="btn">Enregistrer</button>
+        </form>
+    </div>
+</div>
+
+
+</section>
+        </main>
+
+        <!------Fin MAIN------>
+
+        <div class="right">
+            <div class="top">
+                <button id="menu-btn">
+                    <i class="uil uil-bars"></i>
+                </button>
+                <div class="theme-toggler">
+                    <i class="uil uil-sun active"></i>
+                    <i class="uil uil-moon"></i>
+                </div>
+                <div class="profile">
+                    <div class="info">
+                        <p>Bonjour, <b><?= $_SESSION['aprenom'] ?></b></p>
+                        <small class="text-muted">Admin</small>
+                    </div>
+                    <div class="profil-photo">
+                        <img src="../assets/images/profil/mianne.png" alt="" srcset="">
+                    </div>
+                </div>
+            </div>
+            <!------Fin TOP------>
+
+            
+    </div>
+
+    <a href="{{ path('app_user_index') }}">back to list</a>
+{% endblock %}
