@@ -25,6 +25,12 @@ class SiteController extends AbstractController
         if($this->getUser()){
             if ($this->getUser()->getRoles()[0] == "ROLE_ADMIN") {
                 return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            }else{
+                return $this->render('site/index.html.twig', [
+                    'voitures' => $repo->findAll(),
+                    'tops' => $repo->findBy(['isTop' => true]),
+        
+                ]);
             }
         }else{
             return $this->redirectToRoute('app_login', [], Response::HTTP_SEE_OTHER);
