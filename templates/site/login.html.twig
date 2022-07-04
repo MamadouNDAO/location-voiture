@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
 <style>
@@ -111,7 +111,7 @@ a:hover {
   <form action="{{ path('app_login') }}" method="POST">
     <input type="email" name="_username" placeholder="Email...">
     <input type="password" name="_password" placeholder="Mot de passe...">
-    <a href="#">Mot de passe oublié?</a>
+    <a href="{{ path('app_inscription') }}">Vous n'avez pas de compte? S'inscrire</a>
     <input type="submit" value="Se connecter">
   </form>
 </div>

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}Détail voiture{% endblock %}
 
 {% block body %}
 <style>
@@ -19,10 +19,14 @@
                 </div>
 
                 <div id="section_header">
-                    <a class="active menu" href="Hébergements">Voitures</a>
-                    <a class="menu" href="Activités">Locations</a>
-                    <a class="menu" href="Activités">Connexion</a>
-                    <a class="menu" href="Activités">Deconnexion</a>
+                    <a class="active menu" href="{{ path('app_loca_index') }}">Accueil</a>
+                    {% if not app.user %}
+                    <a class="menu" href="{{ path('app_login') }}">Connexion</a>
+                    
+                    {% else %}
+                    <a class="menu" href="{{ path('app_mes_demandes') }}">Mes demandes</a>
+                    <a class="menu" href="{{ path('app_logout') }}">Deconnexion</a>
+                    {% endif %}
                 </div>
             </div>
 
@@ -49,8 +53,9 @@
                 <div class="info">
                     <div class="info-circle">
                         <i class="uil uil-info"></i>
+                        
                     </div>
-                    
+                    <span><a href="{{ path('app_loca_index') }}"><button>Retour</button></a></span>
                     
                 </div>
             </div>
@@ -59,11 +64,11 @@
                 
                 <!-- Il contient un article -->
                 <article class="list-article">
-                    <div class="list">
+                    <div class="list-detail">
                     
                         
-                    <a href="#">
-                        <div class="card card-center">
+                    
+                        <div class="card card-detail">
                             <img src="{{ voiture.photo }}" alt="" srcset="">
                             <div class="card-text">
                                 <h3>{{ voiture.marque }}</h3>
@@ -75,10 +80,24 @@
                                     <i class='bx bxs-star start-blue' ></i>
                                     <i class='bx bxs-star start-light' ></i>
                                 </div>
+                                <div class="dispo">
+                                {% if voiture.isDisponible == true %}
+                                    <i class="uil uil-toggle-on ok"></i>
+                                    <span>Disponible</span>
+                                {% else %}
+                                    <i class="uil uil-toggle-off not"></i>
+                                    <span class="span-not">En location</span>
+                                {% endif %}
+                                </div>
+                                
                             </div>
-                            
+                            {% if voiture.isDisponible == true %}
+                                <a href="{{ path('app_louer', {'id': voiture.id}) }}"><button>Louer</button></a>
+                            {% else %}
+                                <a href="{{ path('app_loca_index') }}"><button>Trouver un autre</button></a>
+                            {% endif %}
                         </div>
-                        </a>
+                        
                     
                         
                     </div>
@@ -86,32 +105,7 @@
                 </article>
 
                 <!-- Contenu aside -->
-                <aside class="main-aside">
-                    <div class="aside-title">
-                        <h3>Les plus populaires</h3>
-                        <i class='bx bxs-star ' ></i>
-                    </div>
-                    <div class="list-card-aside">
-                    {% for top in tops %}
-                        <div class="card card-aside">
-                            <img src="{{ top.photo }}" alt="" srcset="">
-                            <div class="card-aside-text">
-                                <h3>{{ top.marque }}</h3>
-                                <span>A <strong>{{ top.prix }} CFA/Jour</strong></span>
-                                <div class="star">
-                                    <i class='bx bxs-star start-blue' ></i>
-                                    <i class='bx bxs-star start-blue' ></i>
-                                    <i class='bx bxs-star start-blue' ></i>
-                                    <i class='bx bxs-star start-blue' ></i>
-                                    <i class='bx bxs-star start-light' ></i>
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
-                        
-                        
-                    </div>
-                </aside>
+                
             </div>
 
             

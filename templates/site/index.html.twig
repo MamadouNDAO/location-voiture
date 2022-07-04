@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New User{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
 <style>
@@ -19,12 +19,13 @@
                 </div>
 
                 <div id="section_header">
-                    <a class="active menu" href="Hébergements">Voitures</a>
-                    <a class="menu" href="Activités">Locations</a>
+                    <a class="active menu" href="{{ path('app_loca_index') }}">Accueil</a>
                     {% if not app.user %}
-                    <a class="menu" href="{{ path('app_login') }}">Connexion</a>
+                        <a class="menu" href="{{ path('app_login') }}">Connexion</a>
+                    
                     {% else %}
-                    <a class="menu" href="{{ path('app_logout') }}">Deconnexion</a>
+                        <a class="menu" href="{{ path('app_mes_demandes') }}">Mes demandes</a>
+                        <a class="menu" href="{{ path('app_logout') }}">Deconnexion</a>
                     {% endif %}
                 </div>
             </div>
@@ -113,6 +114,7 @@
                     </div>
                     <div class="list-card-aside">
                     {% for top in tops %}
+                    <a href="{{ path('app_loca_detail', {'id': top.id}) }}">
                         <div class="card card-aside">
                             <img src="{{ top.photo }}" alt="" srcset="">
                             <div class="card-aside-text">
@@ -127,6 +129,7 @@
                                 </div>
                             </div>
                         </div>
+                    </a>
                     {% endfor %}
                         
                         

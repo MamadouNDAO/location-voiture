@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail voiture{% endblock %}
+
+{% block body %}
+<style>
+    body{
+        background: #fff;
+    }
+</style>
+
+
+
+        <!-- Voici notre en‑tête -->
+        <header>
+            <div class="entete ">
+                <div id="logobooki">
+                    <img src="/image/logo.jpg" alt="logo Booki" id="logobooki"/>
+                </div>
+
+                <div id="section_header">
+                    <a class="menu" href="{{ path('app_loca_index') }}">Accueil</a>
+                    {% if not app.user %}
+                    <a class="menu" href="{{ path('app_login') }}">Connexion</a>
+                    
+                    {% else %}
+                    <a class="active menu" href="{{ path('app_mes_demandes') }}">Mes demandes</a>
+                    <a class="menu" href="{{ path('app_logout') }}">Deconnexion</a>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </header>
+        <main>
+            <div class="container-site">
+                <div class="info">
+                    <div class="info-circle">
+                        <i class="uil uil-info"></i>
+                        
+                    </div>
+                    <span><a href="{{ path('app_loca_index') }}"><button>Retour</button></a></span>
+                    
+                </div>
+            </div>
+            <div class="container-site main-center">
+                <table class="table">
+        <thead>
+            <tr>
+                <th>Photo</th>
+                <th>Début</th>
+                <th>Fin</th>
+                <th>Prix</th>
+                <th>Satut</th>
+                
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for demande in demandes %}
+            <tr>
+                <td>
+                    <img class="photo-profil" src="{{ demande.voiture.photo }}" width="20px" height="80px">
+                </td>
+                <td>{{ demande.dateDebut | date("m/d/Y") }}</td>
+                <td>{{ demande.dateFin | date("m/d/Y") }}</td>
+                <td>{{ demande.prixTotal }}</td>
+                <td>{{ demande.statut }}</td>
+                <td>
+                    <a href="">show</a>
+                    <a href="">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">Aucune demande</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+                    
+            </div>
+
+            
+        </main>
+
+        <!-- Et voici notre pied de page-->
+        <footer>
+        <br>
+        <br>
+        <br>
+            <p>&copy; 2022 ESTM EXAMEN</p>
+        </footer>
+
+    
+
+
+{% endblock %}

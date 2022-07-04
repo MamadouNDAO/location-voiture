@@ -25,11 +25,15 @@
                     <i class="uil uil-users-alt"></i>
                     <h3>Utilisateurs</h3>
                 </a>
+                <a  href="{{ path('app_client')}}" class="alink">
+                    <i class="uil uil-users-alt"></i>
+                    <h3>Clients</h3>
+                </a>
                 <a  href="{{ path('app_voiture_index')}}" id="evnt"  class="alink ">
                     <i class="uil uil-car-sideview"></i>
                     <h3>Voitures</h3>
                 </a>
-                <a href="#"  class="alink">
+                <a href="{{ path('app_demandes') }}"  class="alink">
                     <i class="uil uil-postcard"></i>
                     <h3>Demandes</h3>
                 </a>
@@ -82,7 +86,7 @@
         {% for user in users %}
             <tr>
                 <td>
-                    <img class="photo-profil" src="{{ user.photo }}" width="50px" height="50px" style="border-radius:50%">
+                    <img class="photo-profil" src="{{ user.photo }}" width="20px" height="40px" style="border-radius:50%">
                 </td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.prenom }}</td>
@@ -119,8 +123,7 @@
                 </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Bonjour, <b><?= $_SESSION['aprenom'] ?></b></p>
-                        <small class="text-muted">Admin</small>
+                        <p>Bonjour, <b>{{app.user.prenom}}</b></p>
                     </div>
                     <div class="profil-photo">
                         <img src="../assets/images/profil/mianne.png" alt="" srcset="">

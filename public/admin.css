@@ -135,7 +135,7 @@ b{
 
 
 aside{
-    height: 100vh;
+    /*height: 100vh;*/
 }
 
 aside .top{
@@ -567,6 +567,23 @@ main .recent-orders a{
     padding: 10px;
     border-radius: 5px;
     width: 450px;
+}
+
+.form-inputs{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.form-inputs input, .form-inputs select{
+    border: solid 1px #7d8da1;
+    padding: 10px;
+    border-radius: 5px;
+    width: 120px;
 }
 
 .btn{

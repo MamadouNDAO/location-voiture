@@ -40,9 +40,13 @@ class Voiture
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $typeVoiture;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $isTop;
+
     public function __construct()
     {
         $this->demandes = new ArrayCollection();
+        $this->isTop = false;
     }
 
     public function getId(): ?int
@@ -161,6 +165,18 @@ class Voiture
     public function setTypeVoiture(?string $typeVoiture): self
     {
         $this->typeVoiture = $typeVoiture;
+
+        return $this;
+    }
+
+    public function isIsTop(): ?bool
+    {
+        return $this->isTop;
+    }
+
+    public function setIsTop(?bool $isTop): self
+    {
+        $this->isTop = $isTop;
 
         return $this;
     }

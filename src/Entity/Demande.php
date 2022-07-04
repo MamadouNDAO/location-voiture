@@ -29,6 +29,9 @@ class Demande
     #[ORM\JoinColumn(nullable: false)]
     private $client;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $prixTotal;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -90,6 +93,18 @@ class Demande
     public function setClient(?User $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getPrixTotal(): ?int
+    {
+        return $this->prixTotal;
+    }
+
+    public function setPrixTotal(?int $prixTotal): self
+    {
+        $this->prixTotal = $prixTotal;
 
         return $this;
     }

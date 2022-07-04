@@ -1,0 +1,143 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Demande{% endblock %}
+
+{% block body %}
+<style>
+    body{
+        background: #fff;
+    }
+</style>
+
+
+
+        <!-- Voici notre en‑tête -->
+        <header>
+            <div class="entete ">
+                <div id="logobooki">
+                    <img src="/image/logo.jpg" alt="logo Booki" id="logobooki"/>
+                </div>
+
+                <div id="section_header">
+                    <a class="active menu" href="{{ path('app_loca_index') }}">Accueil</a>
+                    {% if not app.user %}
+                    <a class="menu" href="{{ path('app_login') }}">Connexion</a>
+                    
+                    {% else %}
+                    <a class="menu" href="{{ path('app_mes_demandes') }}">Mes demandes</a>
+                    <a class="menu" href="{{ path('app_logout') }}">Deconnexion</a>
+                    {% endif %}
+                </div>
+            </div>
+
+
+        </header>
+        <main>
+            <div class="container-site">
+                <div class="info">
+                    <div class="info-circle">
+                        <i class="uil uil-info"></i>
+                        
+                    </div>
+                    <span><a href="{{ path('app_loca_index') }}"><button>Retour</button></a></span>
+                    
+                </div>
+            </div>
+            <div class="container-site main-center">
+
+                
+                <!-- Il contient un article -->
+                <article class="list-article">
+                    <div class="list-detail">
+                    
+                        
+                    
+                        <div class="card card-detail">
+                            <img src="{{ voiture.photo }}" alt="" srcset="">
+                            <div class="card-text">
+                                <h3>{{ voiture.marque }}</h3>
+                                <span>A partir de <strong>{{ voiture.prix }} CFA/Jour</strong></span>
+                                <div class="star">
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-blue' ></i>
+                                    <i class='bx bxs-star start-light' ></i>
+                                </div>
+                                <div class="dispo">
+                                {% if voiture.isDisponible == true %}
+                                    <i class="uil uil-toggle-on ok"></i>
+                                    <span>Disponible</span>
+                                {% else %}
+                                    <i class="uil uil-toggle-off not"></i>
+                                    <span class="span-not">En location</span>
+                                {% endif %}
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    
+                        
+                    </div>
+                    
+                </article>
+
+                <!-- Contenu aside -->
+                <aside class="main-aside">
+                    <form action="{{ path('app_save_car') }}" method="POST">
+                        <div class="form-inputs">
+                            <label>Date début</label>
+                            <input  type="date" name="debut" placeholder="Date début..." id="debut" required>
+                        </div>
+                        <div class="form-inputs">
+                            <label>Date fin</label>
+                            <input type="date" onchange="setDate({{voiture.prix}})" name="fin" placeholder="Date début..." id="fin" required>
+                        </div>
+
+                        <div class="form-inputs">
+                            <label>Nombre de jour</label>
+                            <input type="number" name="jour" placeholder="Jours..." id="jour" readonly>
+                        </div>
+
+                        <div class="form-inputs">
+                            <label>Prix total</label>
+                            <input type="number" name="prix" placeholder="Prix..." id="prix" readonly>
+                        </div>
+                        <div class="form-inputs">
+
+                            <input type="number" name="voiture" id="car" value="{{ voiture.id }}">
+                        </div>
+
+                        <button type="submit" class="btn">Envoyer la demande</button>
+                    </form>
+                </aside>
+            </div>
+
+            
+        </main>
+
+        <!-- Et voici notre pied de page-->
+        <footer>
+        <br>
+        <br>
+        <br>
+            <p>&copy; 2022 ESTM EXAMEN</p>
+        </footer>
+
+    <script type="text/javascript">
+        debut = document.getElementById('debut')
+        fin = document.getElementById('fin')
+        jour = document.getElementById('jour')
+        prix = document.getElementById('prix')
+        function setDate(p) {
+           // console.log((new Date(fin.value) - new Date(debut.value))/ (1000 * 60 * 60 * 24))
+            jour.value = (new Date(fin.value) - new Date(debut.value))/ (1000 * 60 * 60 * 24)
+            prix.value = p*jour.value
+        }
+        
+    </script>
+
+
+{% endblock %}
